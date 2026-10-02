@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshCart</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f7f7f7;
+        color: #222;
+    }
+    .nav{
+        background: linear-gradient(90deg, #0a0909 0%, #8d8686 100%);
+        border-bottom: 1px solid rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
+        min-height: 15vh;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+    .nav-bar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1300px;
+        padding: 0 50px;
+        font-size: 1rem;
+    }
+    .nav-logo{
+        color: #fff;
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+    }
+    .nav-icon{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+    }
+    .icon-img{
+        width: 40px;
+        height: 40px;
+    }
+    .icon{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+    .icon p {
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1rem;
+        color: #fff;
+        padding: 0 1rem;
+    }
+    .container{
+        width: 100%;
+        max-width: 1400px;
+        min-height: 60vh;
+        padding: 30px 40px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        background: linear-gradient(135deg, #f9f9f9 0%, #f3f3f3 100%);
+    }
+    .cont-img{
+        width: 50%;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+    .cont-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .cont-text{
+        width: 50%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 10px;
+    }
+    .cont-text h1{
+        font-size: clamp(2.2rem, 3vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 18px;
+        color: #222;
+    }
+    .cont-text p{
+        font-size: clamp(1.1rem, 1.6vw, 1.6rem);
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 24px;
+    }
+    .cont-btn{
+        width: max-content;
+        min-width: 160px;
+        padding: 14px 26px;
+        border: none;
+        border-radius: 8px;
+        background-color: #7b7676;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .cont-btn:hover{
+        background-color: #5e5959;
+        transform: translateY(-1px);
+    }
+    .feature-text{
+        padding: 0 40px 20px;
+        margin-top: 20px;
+        font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+    }
+    .feature-category{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 50px 30px;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .feature{
+        background-color: #fff;
+        border: 1px solid rgba(123,118,118,0.2);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        width: calc(16.66% - 20px);
+        min-width: 150px;
+        padding: 20px 12px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    }
+    .feature:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+    .feature img{
+        width: 80px;
+        height: 90px;
+        margin: 0 0 16px;
+        object-fit: contain;
+    }
+    .feature-category2{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 50px 30px;
+        gap: 20px;
+    }
+    .feature2{
+        border: 1px solid  #7b7676;
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        min-height: 220px;
+        padding: 30px 20px;
+        border-radius: 14px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+    #fea1{
+         background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://th.bing.com/th/id/OIP.YJ4WJz7gmzzJNL4Yum8uagHaE8?w=294&h=196&c=7&r=0&o=7&pid=1.7&rm=3);
+    }
+    #fea2{
+         background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://th.bing.com/th/id/OIP.lb6R7RTPwDplG_3549fG2QHaEJ?w=292&h=180&c=7&r=0&o=7&pid=1.7&rm=3);
+    }
+    .feature-btn{
+        padding: 12px 18px;
+        width: max-content;
+        min-width: 130px;
+        border: none;
+        border-radius: 6px;
+        background-color: rgba(255,255,255,0.2);
+        color: #fff;
+        cursor: pointer;
+        font-weight: 600;
+        backdrop-filter: blur(3px);
+    }
+    .feature2 h1{
+        font-size: clamp(1.5rem, 2vw, 2.3rem);
+        margin-bottom: 10px;
+    }
+    .feature2 p{
+        background-size: cover;
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .product-feature{
+        padding: 10px 40px 0;
+        font-size: 1.3rem;
+    }
+    .product-category{
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 50px;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .product{
+        border: 1px solid rgba(123,118,118,0.25);
+        background: #fff;
+        width: calc(20% - 20px);
+        min-width: 170px;
+        padding: 18px 14px;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+    .product p{
+        font-size: 0.72rem;
+        margin-top: 10px;
+        color: #666;
+    }
+    .product h2{
+        font-size: 1rem;
+        margin-top: 8px;
+        line-height: 1.4;
+    }
+    .product .rating {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        font-size: 0.7rem;
+    }
+    .product .rating .stars {
+        color: #f4b400;
+        letter-spacing: 1px;
+    }
+    .product .rating .score {
+        color: #111;
+        font-weight: 700;
+    }
+    .product .rating .count {
+        color: #555;
+    }
+    .product img{
+        margin: 40px auto 0px;
+        height: 100px;
+        width: 120px;
+       display: block;
+    
+    }
+    span{
+        color: black;
+    }
+    .price{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+        align-items: center;
+    }
+    .price del{
+        margin-right: 5px;
+        font-size: 0.9rem;
+        color: #888;
+    }
+    .price ins{
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #111;
+        text-decoration: none;
+    }
+    .button{
+        font-size: 0.9rem;
+    }
+    .cart{
+        background-color: #1ca745;
+        width: 70px;
+        height: 34px;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: 600;
+        transition: background 0.2s ease;
+    }
+    .cart:hover{
+        background-color: #148a38;
+    }
+    .why-section{
+        padding: 60px 50px 40px;
+    }
+    .why-header{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .why-header h2{
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        margin-bottom: 10px;
+    }
+    .why-header p{
+        color: #666;
+        font-size: 1.05rem;
+    }
+    .why-grid{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    .why-card{
+        background: #fff;
+        border: 1px solid rgba(123,118,118,0.2);
+        border-radius: 14px;
+        padding: 28px 20px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    }
+    .why-icon{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: #eaf7ee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 18px;
+        font-size: 2rem;
+    }
+    .why-card h3{
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+    .why-card p{
+        color: #666;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+    .contact-section{
+        padding: 60px 50px 80px;
+        background: #f1f5f1;
+    }
+    .contact-wrap{
+        display: flex;
+        gap: 30px;
+        background: #fff;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    .contact-info,
+    .contact-form{
+        flex: 1;
+    }
+    .contact-info h2,
+    .contact-form h2{
+        font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+        margin-bottom: 18px;
+    }
+    .contact-info p{
+        margin-bottom: 14px;
+        color: #555;
+        line-height: 1.7;
+    }
+    .contact-details{
+        margin-top: 20px;
+        display: grid;
+        gap: 12px;
+    }
+    .detail-item{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #333;
+        font-size: 1rem;
+    }
+    .detail-item span{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #eaf7ee;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    .contact-form form{
+        display: grid;
+        gap: 16px;
+    }
+    .contact-form input,
+    .contact-form textarea{
+        width: 100%;
+        border: 1px solid rgba(123,118,118,0.3);
+        border-radius: 10px;
+        padding: 14px 16px;
+        font-size: 1rem;
+        background: #fafafa;
+    }
+    .contact-form textarea{
+        resize: vertical;
+        min-height: 130px;
+    }
+    .contact-form button{
+        width: max-content;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        background: #1ca745;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    @media (max-width: 980px){
+        .container{
+            flex-direction: column;
+            text-align: center;
+        }
+        .cont-text,
+        .cont-img{
+            width: 100%;
+        }
+        .cont-btn{
+            margin: 0 auto;
+        }
+        .feature{
+            width: calc(33.33% - 20px);
+        }
+        .product{
+            width: calc(33.33% - 20px);
+        }
+    }
+    @media (max-width: 700px){
+        .nav-bar{
+            padding: 0 20px;
+        }
+        .nav-icon{
+            gap: 8px;
+        }
+        .feature-category,
+        .feature-category2,
+        .product-category{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .feature,
+        .product{
+            width: 100%;
+        }
+        .feature-category2{
+            flex-direction: column;
+        }
+        .feature2{
+            width: 100%;
+        }
+        .why-grid{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .contact-wrap{
+            flex-direction: column;
+            padding: 20px;
+        }
+    }
+    @media (max-width: 500px){
+        .why-grid{
+            grid-template-columns: 1fr;
+        }
+        .contact-section{
+            padding: 50px 20px 60px;
+        }
+    }
+</style>
+<body>
+    <div class="nav">
+        <div class="nav-bar">
+            <div class="nav-logo">
+                <h1>FRESHCART</h1>
+            </div>
+            <div class="nav-icon">
+                <div class="icon"><a href="#"><img src="https://th.bing.com/th/id/OIP.mG14NIwRX4JhifJad7f3zAAAAA?w=174&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="#"></a><p> Service</p></div>
+                <div class="icon"><a href="#"><img src="images/cart-shopping-solid-full.svg" alt="#" height="30px" width="30px"></a><p>Cart</p></div>
+                <div class="icon"><a href="#"><img src="images/phone-flip-solid-full.svg" alt="#" width="30px" height="30px"></a><p>Contact</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cont-text">
+            <h1>SuperMartket For Fresh Grocery</h1>
+            <p>Introducing a new model for online grocery shopping and convient home delivery</p>
+            <button class="cont-btn">SHOP NOW</button>
+        </div>
+        <div class="cont-img"><img src="https://th.bing.com/th/id/OIP.FmnxiOvWFmC1-sy2uDNbLQHaEK?w=328&h=184&c=7&r=0&o=7&pid=1.7&rm=3" alt=""></div>
+    </div>
+    <h1 class="feature-text">Feature Categories</h1>
+    <div class="feature-category">
+        <div class="feature"> <img src="https://www.bing.com/th/id/OIP.pfU5ZsdiNW5KXvbXA9Ir8QHaHa?w=130&h=128&c=8&rs=1&qlt=90&o=6&pid=ImgAns&rm=2 " alt="#"><p>Snack & Munchies</p></div>
+        <div class="feature"> <img src="https://tse2.mm.bing.net/th/id/OIP.LRWlHU6lXdWP1VyEZulx0wHaHJ?w=206&h=200&c=7&r=0&o=7&pid=1.7&rm=3" alt="#"><p>Bakery& Biscuits</p></div>
+        <div class="feature"> <img src="https://tse2.mm.bing.net/th/id/OIP.fv0gRuA6b3AxDwZuQyhBUQHaHa?w=182&h=182&c=7&r=0&o=7&pid=1.7&rm=3" alt="#"><p>Insatnt Food</p></div>
+        <div class="feature"> <img src="https://th.bing.com/th/id/OIP.IkRwndSY9gftAfzAKu5jUAAAAA?w=166&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="#"><p>Tea, Cofeee & Drinks</p></div>
+        <div class="feature"> <img src="https://th.bing.com/th/id/OIP.TGfAsyzF1vA27XnGeObIdQAAAA?w=156&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="#"><p>Atta, Rice & dal</p></div>
+        <div class="feature"> <img src="https://th.bing.com/th/id/OIP.SOL4UTVL5TBWlmjLsgb6gQHaHa?w=183&h=183&c=7&r=0&o=7&pid=1.7&rm=3" alt="#"><p>Baby Care</p></div>
+    </div>
+
+    <div class="feature-category2">
+        <div class="feature2" id="fea1">
+            <h1>Friuts & Vegetables</h1>
+            <p>Get up to 30% off</p>
+            <button class="feature-btn">SHOP NOW</button>
+        </div>
+        <div class="feature2" id="fea2">
+            <h1>Freshly  Baked Buns</h1>
+            <p>Get up to 25% off</p>
+            <button class="feature-btn">SHOP NOW</button>
+        </div>
+    </div>
+    <div class="product-feature">
+        <h1>Popular Product</h1>
+    </div>
+    <div class="product-category">
+        <div class="product"> <img src="images/download.jpeg" alt="#">
+            <p>Snack & Munchies</p>
+            <h2>Haldiram's Sev Bhuja</h2>
+            <div class="rating"><span class="stars">★★★★★</span><span class="score">5.0</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="images/nutrichoice.jpg" alt="#">
+            <p>Bakery & biscucit</p>
+            <h2>Nutrichoice digestive</h2>
+            <div class="rating"><span class="stars">★★★★☆</span><span class="score">4.2</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="images/Cadbury .jpg" alt="#">
+         <p>Bakery & biscucit</p>
+            <h2>Cabbury 5 Star Chocolate</h2>
+            <div class="rating"><span class="stars">★★★★★</span><span class="score">4.8</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="images/onion.jpg" alt="#">
+            <p>Snack & Munchies</p>
+            <h2>Onion Flavour Potato</h2>
+            <div class="rating"><span class="stars">★★★★☆</span><span class="score">4.1</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="images/popcorn .jpg" alt="#">
+            <p>Instant Food</p>
+            <h2>Salted Instant Popcorn</h2>
+            <div class="rating"><span class="stars">★★★★★</span><span class="score">4.9</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-category">
+        <div class="product"> <img src="images/yogurt.webp" alt="#">
+            <p>Dairy, Bread & Eggs</p>
+            <h2>Blueberry Greek Yougurt</h2>
+            <div class="rating"><span class="stars">★★★★★</span><span class="score">4.7</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="https://www.bing.com/th/id/OIP.6xY4hd17Pj6VlVMNlyBqXwAAAA?w=195&h=128&c=8&rs=1&qlt=90&o=6&pid=ImgAns&rm=2" alt="#">
+            <p>Dairy, Bread & Eggs</p>
+            <h2>Britannia Chesse Slices</h2>
+            <div class="rating"><span class="stars">★★★★☆</span><span class="score">4.4</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="https://www.bing.com/th/id/OIP.PdgvsrzJuUlDIUipc8ONJgHaHa?w=131&h=128&c=8&rs=1&qlt=90&o=6&pid=ImgAns&rm=2" alt="#">
+            <p>Instant Food</p>
+            <h2>Kellogg's Original Cereals</h2>
+            <div class="rating"><span class="stars">★★★★★</span><span class="score">4.9</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="https://www.bing.com/th/id/OIP.gqxf-qeDgznXLhUa4iNM7gHaHa?w=128&h=128&c=8&rs=1&qlt=90&o=6&pid=ImgAns&rm=2" alt="#">
+            <p>Snack & Munchies</p>
+            <h2>Slurrp Millet chocolate</h2>
+            <div class="rating"><span class="stars">★★★★☆</span><span class="score">4.3</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+        <div class="product"> <img src="https://www.bing.com/th/id/OIP.DlixBeuqwTI07u-UxVzkgAHaHa?w=128&h=128&c=8&rs=1&qlt=90&o=6&pid=ImgAns&rm=2" alt="#">
+            <p>Dairy, Bread & Eggs</p>
+            <h2>Amul Butter - 500g</h2>
+            <div class="rating"><span class="stars">★★★★★</span><span class="score">5.0</span><span class="count">(456)</span></div>
+            <div class="price">
+                <div class="price-tag">
+                    <del>$20</del>
+                    <ins>$15</ins>
+                </div>
+                <button class="cart">+Add</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="why-section">
+        <div class="why-header">
+            <h2>Why Choose Us</h2>
+            <p>Fresh products, trusted service, and a better shopping experience for your family.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">✅</div>
+                <h3>Fresh Quality</h3>
+                <p>We handpick fresh groceries and daily essentials to keep your kitchen stocked with quality items.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Enjoy quick doorstep delivery that saves your time and makes shopping feel effortless.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💰</div>
+                <h3>Best Prices</h3>
+                <p>Competitive pricing and regular offers help you get more value for every purchase.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">⭐</div>
+                <h3>Trusted Service</h3>
+                <p>Thousands of happy shoppers rely on us for reliable products, service, and support.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-wrap">
+            <div class="contact-info">
+                <h2>Contact Us</h2>
+                <p>Have a question about delivery, product availability, or payment? Our team is here to help.</p>
+                <div class="contact-details">
+                    <div class="detail-item"><span>📍</span> 24 Fresh Market Road, New York</div>
+                    <div class="detail-item"><span>📞</span> +1 (234) 567-890</div>
+                    <div class="detail-item"><span>✉️</span> support@freshcart.com</div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Send a Message</h2>
+                <form>
+                    <input type="text" placeholder="Your Name" />
+                    <input type="email" placeholder="Your Email" />
+                    <textarea placeholder="Your Message"></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
